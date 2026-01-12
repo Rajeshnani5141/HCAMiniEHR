@@ -1,0 +1,52 @@
+@page
+@model HCAMiniEHR.Pages.LabOrders.CreateModel
+@{
+    ViewData["Title"] = "Create Lab Order";
+}
+
+<h1>Create Lab Order</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="LabOrder.AppointmentId" class="form-label">Appointment</label>
+                <select asp-for="LabOrder.AppointmentId" class="form-select" asp-items="Model.AppointmentList">
+                    <option value="">-- Select Appointment --</option>
+                </select>
+                <span asp-validation-for="LabOrder.AppointmentId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="LabOrder.TestName" class="form-label"></label>
+                <input asp-for="LabOrder.TestName" class="form-control" />
+                <span asp-validation-for="LabOrder.TestName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="LabOrder.OrderDate" class="form-label"></label>
+                <input asp-for="LabOrder.OrderDate" class="form-control" type="date" />
+                <span asp-validation-for="LabOrder.OrderDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="LabOrder.Status" class="form-label"></label>
+                <select asp-for="LabOrder.Status" class="form-select">
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="LabOrder.Results" class="form-label"></label>
+                <textarea asp-for="LabOrder.Results" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

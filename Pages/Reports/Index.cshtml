@@ -1,0 +1,104 @@
+@page
+@model HCAMiniEHR.Pages.Reports.IndexModel
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h1>Reports & Analytics</h1>
+
+<ul class="nav nav-tabs" id="reportTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab">Pending Lab Orders</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="followup-tab" data-bs-toggle="tab" data-bs-target="#followup" type="button" role="tab">No Follow-Up</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="doctor-tab" data-bs-toggle="tab" data-bs-target="#doctor" type="button" role="tab">Doctor Productivity</button>
+    </li>
+</ul>
+
+<div class="tab-content mt-3" id="reportTabsContent">
+    <!-- Pending Lab Orders Report -->
+    <div class="tab-pane fade show active" id="pending" role="tabpanel">
+        <h3>Pending Lab Orders</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Test Name</th>
+                    <th>Patient</th>
+                    <th>Order Date</th>
+                    <th>Appointment Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.PendingLabOrders)
+                {
+                    <tr>
+                        <td>@item.TestName</td>
+                        <td>@item.PatientName</td>
+                        <td>@item.OrderDate.ToShortDateString()</td>
+                        <td>@item.AppointmentDate.ToShortDateString()</td>
+                        <td><span class="badge bg-warning">@item.Status</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Patients Without Follow-Up Report -->
+    <div class="tab-pane fade" id="followup" role="tabpanel">
+        <h3>Patients Without Follow-Up Appointments</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Email</th>
+                    <th>Last Appointment</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.PatientsWithoutFollowUp)
+                {
+                    <tr>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td>@item.Email</td>
+                        <td>@(item.LastAppointmentDate?.ToShortDateString() ?? "Never")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Doctor Productivity Report -->
+    <div class="tab-pane fade" id="doctor" role="tabpanel">
+        <h3>Doctor Productivity Report</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Total Appointments</th>
+                    <th>Completed</th>
+                    <th>Scheduled</th>
+                    <th>Completion Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.DoctorProductivity)
+                {
+                    var completionRate = item.TotalAppointments > 0 
+                        ? (item.CompletedAppointments * 100.0 / item.TotalAppointments).ToString("F1") 
+                        : "0.0";
+                    <tr>
+                        <td>@item.DoctorName</td>
+                        <td>@item.TotalAppointments</td>
+                        <td><span class="badge bg-success">@item.CompletedAppointments</span></td>
+                        <td><span class="badge bg-primary">@item.ScheduledAppointments</span></td>
+                        <td>@completionRate%</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

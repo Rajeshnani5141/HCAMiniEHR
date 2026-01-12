@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "HCA Mini EHR - Dashboard";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4">HCA Mini EHR System</h1>
+    <p class="lead">Healthcare Management & Electronic Health Records</p>
+</div>
+
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-people"></i> Patients</h5>
+                <p class="card-text">Manage patient records and information</p>
+                <a href="/Patients/Index" class="btn btn-light">View Patients</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-calendar-check"></i> Appointments</h5>
+                <p class="card-text">Schedule and manage appointments</p>
+                <a href="/Appointments/Index" class="btn btn-light">View Appointments</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-clipboard-data"></i> Lab Orders</h5>
+                <p class="card-text">Track laboratory test orders</p>
+                <a href="/LabOrders/Index" class="btn btn-light">View Lab Orders</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-bar-chart"></i> Reports</h5>
+                <p class="card-text">View analytics and reports</p>
+                <a href="/Reports/Index" class="btn btn-light">View Reports</a>
+            </div>
+        </div>
+    </div>
+</div>
+

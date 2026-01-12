@@ -1,0 +1,39 @@
+@page
+@model HCAMiniEHR.Pages.LabOrders.IndexModel
+@{
+    ViewData["Title"] = "Lab Orders";
+}
+
+<h1>Lab Orders</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Lab Order</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Test Name</th>
+            <th>Patient</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th>Results</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var labOrder in Model.LabOrders)
+        {
+            <tr>
+                <td>@labOrder.TestName</td>
+                <td>@labOrder.Appointment.Patient.FirstName @labOrder.Appointment.Patient.LastName</td>
+                <td>@labOrder.OrderDate.ToShortDateString()</td>
+                <td><span class="badge bg-@(labOrder.Status == "Completed" ? "success" : "warning")">@labOrder.Status</span></td>
+                <td>@(labOrder.Results ?? "N/A")</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@labOrder.Id" class="btn btn-sm btn-warning">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
