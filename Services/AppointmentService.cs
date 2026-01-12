@@ -85,5 +85,9 @@ namespace HCAMiniEHR.Services
                 await _context.SaveChangesAsync();
             }
         }
+        public async Task<IEnumerable<Doctor>> GetDoctorsAsync()
+        {
+            return await _context.Doctors.OrderBy(d => d.LastName).ToListAsync();
+        }
     }
 }

@@ -1,0 +1,78 @@
+@page
+@model HCAMiniEHR.Pages.Appointments.DetailsModel
+@{
+    ViewData["Title"] = "Appointment Details";
+}
+
+<h1>Appointment Details</h1>
+
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Appointment.AppointmentDate)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Appointment.AppointmentDate)</dd>
+        
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Appointment.Patient)</dt>
+        <dd class="col-sm-10">
+            @if(Model.Appointment.Patient != null)
+            {
+                 @($"{Model.Appointment.Patient.FirstName} {Model.Appointment.Patient.LastName}")
+            }
+            else
+            {
+                <span>Unknown - ID: @Model.Appointment.PatientId</span>
+            }
+        </dd>
+        
+        <dt class="col-sm-2">Doctor</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Appointment.DoctorName)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Appointment.Reason)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Appointment.Reason)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Appointment.Status)</dt>
+        <dd class="col-sm-10">
+             <span class="badge @(Model.Appointment.Status == "Completed" ? "bg-success" : Model.Appointment.Status == "Cancelled" ? "bg-danger" : "bg-primary")">
+                @Html.DisplayFor(model => model.Appointment.Status)
+            </span>
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <h5>Lab Orders</h5>
+    @if (Model.Appointment.LabOrders.Any())
+    {
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Test Name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Results</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Appointment.LabOrders)
+                {
+                    <tr>
+                        <td>@order.TestName</td>
+                        <td>@order.OrderDate.ToString("d")</td>
+                        <td>@order.Status</td>
+                        <td>@order.Results</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No lab orders for this appointment.</p>
+    }
+</div>
+
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-warning">Edit</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>

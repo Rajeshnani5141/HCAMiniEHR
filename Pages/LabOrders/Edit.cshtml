@@ -1,0 +1,61 @@
+@page
+@model HCAMiniEHR.Pages.LabOrders.EditModel
+@{
+    ViewData["Title"] = "Edit Lab Order";
+}
+
+<h1>Edit Lab Order</h1>
+
+<h4>Lab Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LabOrder.Id" />
+            
+            <div class="form-group mb-3">
+                <label asp-for="LabOrder.AppointmentId" class="control-label">Appointment (Patient - Date)</label>
+                <select asp-for="LabOrder.AppointmentId" class="form-control" asp-items="Model.AppointmentList"></select>
+                <span asp-validation-for="LabOrder.AppointmentId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="LabOrder.TestName" class="control-label"></label>
+                <input asp-for="LabOrder.TestName" class="form-control" />
+                <span asp-validation-for="LabOrder.TestName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="LabOrder.OrderDate" class="control-label"></label>
+                <input asp-for="LabOrder.OrderDate" class="form-control" type="date" />
+                <span asp-validation-for="LabOrder.OrderDate" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="LabOrder.Status" class="control-label"></label>
+                <select asp-for="LabOrder.Status" class="form-control">
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+                <span asp-validation-for="LabOrder.Status" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="LabOrder.Results" class="control-label"></label>
+                <textarea asp-for="LabOrder.Results" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="LabOrder.Results" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

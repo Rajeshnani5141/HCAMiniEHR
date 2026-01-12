@@ -2,34 +2,31 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HCAMiniEHR.Models
 {
-    public class Patient
+    public class Doctor
     {
         public int Id { get; set; }
         
         [Required(ErrorMessage = "First name is required")]
-        [StringLength(100, ErrorMessage = "First name cannot exceed 100 characters")]
-        [Display(Name = "First Name")]
+        [StringLength(100)]
         public string FirstName { get; set; } = string.Empty;
         
         [Required(ErrorMessage = "Last name is required")]
-        [StringLength(100, ErrorMessage = "Last name cannot exceed 100 characters")]
-        [Display(Name = "Last Name")]
+        [StringLength(100)]
         public string LastName { get; set; } = string.Empty;
         
-        [Required(ErrorMessage = "Date of birth is required")]
-        [DataType(DataType.Date)]
-        [Display(Name = "Date of Birth")]
-        public DateTime DateOfBirth { get; set; }
+        [Required(ErrorMessage = "Specialization is required")]
+        [StringLength(200)]
+        public string Specialization { get; set; } = string.Empty;
         
-        [Required(ErrorMessage = "Email is required")]
-        [EmailAddress(ErrorMessage = "Invalid email address")]
+        [EmailAddress]
         [StringLength(200)]
         public string Email { get; set; } = string.Empty;
         
-        [Phone(ErrorMessage = "Invalid phone number")]
+        [Phone]
         [StringLength(20)]
-        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; } = string.Empty;
+        
+        public string LicenseNumber { get; set; } = string.Empty;
         
         // Navigation property
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();

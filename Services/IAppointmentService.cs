@@ -1,4 +1,5 @@
 using HCAMiniEHR.Models;
+using System.Collections;
 
 namespace HCAMiniEHR.Services
 {
@@ -11,5 +12,6 @@ namespace HCAMiniEHR.Services
         Task<int> CreateAppointmentViaSPAsync(int patientId, DateTime appointmentDate, string reason, string doctorName, string status = "Scheduled");
         Task UpdateAppointmentAsync(Appointment appointment);
         Task DeleteAppointmentAsync(int id);
+        Task<IEnumerable> GetDoctorsAsync();
     }
 }

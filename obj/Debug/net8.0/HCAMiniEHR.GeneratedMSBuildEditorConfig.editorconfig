@@ -26,6 +26,18 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/Appointments/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/Appointments/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/Appointments/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/Appointments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,12 +54,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFiT3JkZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/LabOrders/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFiT3JkZXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/LabOrders/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFiT3JkZXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/LabOrders/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFiT3JkZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/Patients/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aWVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/Patients/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aWVudHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/Patients/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aWVudHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/Patients/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/.gemini/antigravity/scratch/HCAMiniEHR/Pages/Patients/Index.cshtml]

@@ -14,6 +14,7 @@ namespace HCAMiniEHR.Data
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<LabOrder> LabOrders { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,6 +47,11 @@ namespace HCAMiniEHR.Data
                     .WithMany(p => p.Appointments)
                     .HasForeignKey(a => a.PatientId)
                     .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(a => a.Doctor)
+                    .WithMany(d => d.Appointments)
+                    .HasForeignKey(a => a.DoctorId)
+                    .OnDelete(DeleteBehavior.SetNull);
             });
 
             // LabOrder configuration
@@ -72,6 +78,18 @@ namespace HCAMiniEHR.Data
                 entity.Property(a => a.Operation).IsRequired().HasMaxLength(50);
             });
 
+            // Doctor configuration
+            modelBuilder.Entity<Doctor>(entity =>
+            {
+                entity.ToTable("Doctor");
+                entity.HasKey(d => d.Id);
+                entity.Property(d => d.FirstName).IsRequired().HasMaxLength(100);
+                entity.Property(d => d.LastName).IsRequired().HasMaxLength(200);
+                entity.Property(d => d.Specialization).IsRequired().HasMaxLength(200);
+                entity.Property(d => d.Email).HasMaxLength(200);
+                entity.Property(d => d.PhoneNumber).HasMaxLength(20);
+            });
+
             // Seed data
             SeedData(modelBuilder);
         }
@@ -92,13 +110,21 @@ namespace HCAMiniEHR.Data
                 new Patient { Id = 10, FirstName = "Maria", LastName = "Garcia", DateOfBirth = new DateTime(1978, 6, 30), Email = "maria.g@email.com", PhoneNumber = "555-0110" }
             );
 
+            // Seed Doctors
+            modelBuilder.Entity<Doctor>().HasData(
+                new Doctor { Id = 1, FirstName = "Sarah", LastName = "Anderson", Specialization = "Family Medicine", Email = "s.anderson@hospital.com", PhoneNumber = "555-1001", LicenseNumber = "MD-12345" },
+                new Doctor { Id = 2, FirstName = "Carlos", LastName = "Martinez", Specialization = "Cardiology", Email = "c.martinez@hospital.com", PhoneNumber = "555-1002", LicenseNumber = "MD-12346" },
+                new Doctor { Id = 3, FirstName = "Jennifer", LastName = "Thompson", Specialization = "Internal Medicine", Email = "j.thompson@hospital.com", PhoneNumber = "555-1003", LicenseNumber = "MD-12347" },
+                new Doctor { Id = 4, FirstName = "David", LastName = "Lee", Specialization = "Endocrinology", Email = "d.lee@hospital.com", PhoneNumber = "555-1004", LicenseNumber = "MD-12348" }
+            );
+
             // Seed Appointments - using static dates
             modelBuilder.Entity<Appointment>().HasData(
-                new Appointment { Id = 1, PatientId = 1, AppointmentDate = new DateTime(2026, 1, 20), Reason = "Annual checkup", DoctorName = "Dr. Anderson", Status = "Scheduled" },
-                new Appointment { Id = 2, PatientId = 2, AppointmentDate = new DateTime(2026, 1, 8), Reason = "Follow-up consultation", DoctorName = "Dr. Martinez", Status = "Completed" },
-                new Appointment { Id = 3, PatientId = 3, AppointmentDate = new DateTime(2026, 1, 16), Reason = "Blood pressure monitoring", DoctorName = "Dr. Thompson", Status = "Scheduled" },
-                new Appointment { Id = 4, PatientId = 4, AppointmentDate = new DateTime(2026, 1, 3), Reason = "Diabetes management", DoctorName = "Dr. Lee", Status = "Completed" },
-                new Appointment { Id = 5, PatientId = 5, AppointmentDate = new DateTime(2026, 1, 27), Reason = "Vaccination", DoctorName = "Dr. Anderson", Status = "Scheduled" }
+                new Appointment { Id = 1, PatientId = 1, DoctorId = 1, AppointmentDate = new DateTime(2026, 1, 20), Reason = "Annual checkup", DoctorName = "Dr. Anderson", Status = "Scheduled" },
+                new Appointment { Id = 2, PatientId = 2, DoctorId = 2, AppointmentDate = new DateTime(2026, 1, 8), Reason = "Follow-up consultation", DoctorName = "Dr. Martinez", Status = "Completed" },
+                new Appointment { Id = 3, PatientId = 3, DoctorId = 3, AppointmentDate = new DateTime(2026, 1, 16), Reason = "Blood pressure monitoring", DoctorName = "Dr. Thompson", Status = "Scheduled" },
+                new Appointment { Id = 4, PatientId = 4, DoctorId = 4, AppointmentDate = new DateTime(2026, 1, 3), Reason = "Diabetes management", DoctorName = "Dr. Lee", Status = "Completed" },
+                new Appointment { Id = 5, PatientId = 5, DoctorId = 1, AppointmentDate = new DateTime(2026, 1, 27), Reason = "Vaccination", DoctorName = "Dr. Anderson", Status = "Scheduled" }
             );
 
             // Seed LabOrders

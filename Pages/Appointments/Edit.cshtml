@@ -1,15 +1,19 @@
 @page
-@model HCAMiniEHR.Pages.Appointments.CreateModel
+@model HCAMiniEHR.Pages.Appointments.EditModel
 @{
-    ViewData["Title"] = "Create Appointment";
+    ViewData["Title"] = "Edit Appointment";
 }
 
-<h1>Create Appointment</h1>
+<h1>Edit Appointment</h1>
 
+<h4>Appointment</h4>
 <hr />
 <div class="row">
     <div class="col-md-6">
         <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Appointment.Id" />
+            
             <div class="mb-3">
                 <label asp-for="Appointment.PatientId" class="form-label">Patient</label>
                 <select asp-for="Appointment.PatientId" class="form-select" asp-items="Model.PatientList">
@@ -17,11 +21,7 @@
                 </select>
                 <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
             </div>
-            <div class="mb-3">
-                <label asp-for="Appointment.AppointmentDate" class="form-label"></label>
-                <input asp-for="Appointment.AppointmentDate" class="form-control" type="datetime-local" />
-                <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
-            </div>
+            
             <div class="mb-3">
                 <label asp-for="Appointment.DoctorId" class="form-label">Doctor</label>
                 <select asp-for="Appointment.DoctorId" class="form-select" asp-items="Model.DoctorList">
@@ -29,13 +29,21 @@
                 </select>
                 <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
             </div>
-            <!-- Keep DoctorName hidden or auto-populated if needed, but for now we rely on the logic in PageModel to set it -->
-            <input type="hidden" asp-for="Appointment.DoctorName" value="Assigned from ID" />
+             <!-- Keep DoctorName hidden, updated in backend -->
+            <input type="hidden" asp-for="Appointment.DoctorName" />
+
+            <div class="mb-3">
+                <label asp-for="Appointment.AppointmentDate" class="form-label"></label>
+                <input asp-for="Appointment.AppointmentDate" class="form-control" type="datetime-local" />
+                <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
+            </div>
+            
             <div class="mb-3">
                 <label asp-for="Appointment.Reason" class="form-label"></label>
                 <textarea asp-for="Appointment.Reason" class="form-control" rows="3"></textarea>
                 <span asp-validation-for="Appointment.Reason" class="text-danger"></span>
             </div>
+            
             <div class="mb-3">
                 <label asp-for="Appointment.Status" class="form-label"></label>
                 <select asp-for="Appointment.Status" class="form-select">
@@ -43,10 +51,12 @@
                     <option value="Completed">Completed</option>
                     <option value="Cancelled">Cancelled</option>
                 </select>
+                <span asp-validation-for="Appointment.Status" class="text-danger"></span>
             </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
             </div>
         </form>
     </div>

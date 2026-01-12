@@ -1,0 +1,65 @@
+@page
+@model HCAMiniEHR.Pages.Patients.DetailsModel
+@{
+    ViewData["Title"] = "Patient Details";
+}
+
+<h1>Patient Details</h1>
+
+<div>
+    <h4>Patient</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Patient.FirstName)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Patient.FirstName)</dd>
+        
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Patient.LastName)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Patient.LastName)</dd>
+        
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Patient.DateOfBirth)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Patient.DateOfBirth)</dd>
+        
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Patient.Email)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Patient.Email)</dd>
+        
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Patient.PhoneNumber)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Patient.PhoneNumber)</dd>
+    </dl>
+</div>
+
+<div>
+    <h5>Appointments</h5>
+    @if (Model.Patient.Appointments.Any())
+    {
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Doctor</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var appointment in Model.Patient.Appointments)
+                {
+                    <tr>
+                        <td>@appointment.AppointmentDate.ToString("d")</td>
+                        <td>@appointment.DoctorName</td>
+                        <td>@appointment.Reason</td>
+                        <td>@appointment.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No appointments found for this patient.</p>
+    }
+</div>
+
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Patient.Id" class="btn btn-warning">Edit</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>
