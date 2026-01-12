@@ -1,0 +1,9 @@
+C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEHR.csproj.AssemblyReference.cache
+C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEHR.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEHR.AssemblyInfoInputs.cache
+C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEHR.AssemblyInfo.cs
+C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEHR.csproj.CoreCompileInputs.cache
+C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEHR.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEHR.RazorAssemblyInfo.cache
+C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEHR.RazorAssemblyInfo.cs
