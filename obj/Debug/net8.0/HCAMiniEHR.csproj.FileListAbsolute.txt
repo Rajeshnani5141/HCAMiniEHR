@@ -145,3 +145,4 @@ C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEH
 C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEHR.genruntimeconfig.cache
 C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\ref\HCAMiniEHR.dll
 C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Admin\.gemini\antigravity\scratch\HCAMiniEHR\obj\Debug\net8.0\HCAMiniEHR.sourcelink.json
