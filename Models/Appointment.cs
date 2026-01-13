@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using HCAMiniEHR.Validation;
 
 namespace HCAMiniEHR.Models
 {
@@ -14,6 +16,7 @@ namespace HCAMiniEHR.Models
         
         [Required(ErrorMessage = "Appointment date is required")]
         [Display(Name = "Appointment Date")]
+        [FutureDate(ErrorMessage = "Appointment date must be in the future")]
         public DateTime AppointmentDate { get; set; }
         
         [Required(ErrorMessage = "Reason is required")]
@@ -23,6 +26,7 @@ namespace HCAMiniEHR.Models
         [StringLength(200)]
         [Display(Name = "Doctor Name")]
         public string DoctorName { get; set; } = string.Empty;
+
         public string Status { get; set; } = "Scheduled"; // Scheduled, Completed, Cancelled
         
         // Navigation properties

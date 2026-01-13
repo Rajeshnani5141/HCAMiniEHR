@@ -456,7 +456,7 @@ namespace HCAMiniEHR.Migrations
                     b.HasOne("HCAMiniEHR.Models.Patient", "Patient")
                         .WithMany("Appointments")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Doctor");
@@ -469,7 +469,7 @@ namespace HCAMiniEHR.Migrations
                     b.HasOne("HCAMiniEHR.Models.Appointment", "Appointment")
                         .WithMany("LabOrders")
                         .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Appointment");

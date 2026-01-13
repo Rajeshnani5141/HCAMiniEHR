@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using HCAMiniEHR.Validation;
 
 namespace HCAMiniEHR.Models
 {
@@ -13,6 +14,7 @@ namespace HCAMiniEHR.Models
         [Required(ErrorMessage = "Order date is required")]
         [DataType(DataType.Date)]
         [Display(Name = "Order Date")]
+        [FutureDate(ErrorMessage = "Order date must be in the future")]
         public DateTime OrderDate { get; set; }
         
         [Required(ErrorMessage = "Test name is required")]

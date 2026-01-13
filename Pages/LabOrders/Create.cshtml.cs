@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using HCAMiniEHR.Models;
 using HCAMiniEHR.Services;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Pages.LabOrders
 {
@@ -18,14 +18,18 @@ namespace HCAMiniEHR.Pages.LabOrders
         }
 
         [BindProperty]
-        public LabOrder LabOrder { get; set; } = new LabOrder { OrderDate = DateTime.Today };
+        public LabOrderDto LabOrder { get; set; } = new LabOrderDto { OrderDate = DateTime.Today };
         
-        public SelectList AppointmentList { get; set; } = new SelectList(new List<Appointment>(), "Id", "Reason");
+        public SelectList AppointmentList { get; set; } = new SelectList(new List<AppointmentDto>(), "Id", "Reason");
 
         public async Task<IActionResult> OnGetAsync()
         {
             var appointments = await _appointmentService.GetAllAppointmentsAsync();
-            AppointmentList = new SelectList(appointments, "Id", "Reason");
+            var appointmentItems = appointments.Select(a => new {
+                Id = a.Id,
+                DisplayText = $"#{a.Id} - {a.PatientName} ({a.AppointmentDate:d})"
+            });
+            AppointmentList = new SelectList(appointmentItems, "Id", "DisplayText");
             return Page();
         }
 
@@ -34,7 +38,11 @@ namespace HCAMiniEHR.Pages.LabOrders
             if (!ModelState.IsValid)
             {
                 var appointments = await _appointmentService.GetAllAppointmentsAsync();
-                AppointmentList = new SelectList(appointments, "Id", "Reason");
+                var appointmentItems = appointments.Select(a => new {
+                    Id = a.Id,
+                    DisplayText = $"#{a.Id} - {a.PatientName} ({a.AppointmentDate:d})"
+                });
+                AppointmentList = new SelectList(appointmentItems, "Id", "DisplayText");
                 return Page();
             }
 

@@ -1,6 +1,4 @@
--- =============================================
--- Audit Trigger for Appointment Table
--- =============================================
+
 CREATE OR ALTER TRIGGER [Healthcare].[trg_Appointment_Audit]
 ON [Healthcare].[Appointment]
 AFTER UPDATE
@@ -23,9 +21,7 @@ BEGIN
 END
 GO
 
--- =============================================
--- Stored Procedure: CreateAppointment
--- =============================================
+
 CREATE OR ALTER PROCEDURE [Healthcare].[sp_CreateAppointment]
     @PatientId INT,
     @AppointmentDate DATETIME,
@@ -40,7 +36,7 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Validate patient exists
+        
         IF NOT EXISTS (SELECT 1 FROM [Healthcare].[Patient] WHERE Id = @PatientId)
         BEGIN
             RAISERROR('Patient with ID %d does not exist.', 16, 1, @PatientId);

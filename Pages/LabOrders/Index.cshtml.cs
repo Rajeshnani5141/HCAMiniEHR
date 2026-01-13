@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using HCAMiniEHR.Models;
 using HCAMiniEHR.Services;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Pages.LabOrders
 {
@@ -13,7 +13,7 @@ namespace HCAMiniEHR.Pages.LabOrders
             _labOrderService = labOrderService;
         }
 
-        public IEnumerable<LabOrder> LabOrders { get; set; } = new List<LabOrder>();
+        public IEnumerable<LabOrderDto> LabOrders { get; set; } = new List<LabOrderDto>();
 
         public async Task OnGetAsync()
         {

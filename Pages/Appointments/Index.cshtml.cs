@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using HCAMiniEHR.Models;
 using HCAMiniEHR.Services;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Pages.Appointments
 {
@@ -13,7 +13,7 @@ namespace HCAMiniEHR.Pages.Appointments
             _appointmentService = appointmentService;
         }
 
-        public IEnumerable<Appointment> Appointments { get; set; } = new List<Appointment>();
+        public IEnumerable<AppointmentDto> Appointments { get; set; } = new List<AppointmentDto>();
 
         public async Task OnGetAsync()
         {

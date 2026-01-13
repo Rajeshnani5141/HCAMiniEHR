@@ -1,13 +1,13 @@
-using HCAMiniEHR.Models;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Services
 {
     public interface IPatientService
     {
-        Task<IEnumerable<Patient>> GetAllPatientsAsync();
-        Task<Patient?> GetPatientByIdAsync(int id);
-        Task<Patient> CreatePatientAsync(Patient patient);
-        Task UpdatePatientAsync(Patient patient);
+        Task<IEnumerable<PatientDto>> GetAllPatientsAsync();
+        Task<PatientDto?> GetPatientByIdAsync(int id);
+        Task<PatientDto> CreatePatientAsync(PatientDto patientDto);
+        Task UpdatePatientAsync(PatientDto patientDto);
         Task DeletePatientAsync(int id);
     }
 }

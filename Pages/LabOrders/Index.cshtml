@@ -26,12 +26,14 @@
         {
             <tr>
                 <td>@labOrder.TestName</td>
-                <td>@labOrder.Appointment.Patient.FirstName @labOrder.Appointment.Patient.LastName</td>
+                <td>@labOrder.PatientName</td>
                 <td>@labOrder.OrderDate.ToShortDateString()</td>
                 <td><span class="badge bg-@(labOrder.Status == "Completed" ? "success" : "warning")">@labOrder.Status</span></td>
                 <td>@(labOrder.Results ?? "N/A")</td>
                 <td>
                     <a asp-page="Edit" asp-route-id="@labOrder.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="Details" asp-route-id="@labOrder.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-page="Delete" asp-route-id="@labOrder.Id" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         }

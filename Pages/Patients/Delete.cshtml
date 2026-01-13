@@ -21,6 +21,8 @@
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Patient.Email)</dd>
     </dl>
     
+    <div asp-validation-summary="All" class="text-danger"></div>
+    
     <form method="post">
         <input type="hidden" asp-for="Patient.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

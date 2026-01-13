@@ -8,10 +8,12 @@ namespace HCAMiniEHR.Models
         
         [Required(ErrorMessage = "First name is required")]
         [StringLength(100)]
+        [RegularExpression(@"^[a-zA-Z\s]*$", ErrorMessage = "First name can only contain letters")]
         public string FirstName { get; set; } = string.Empty;
         
         [Required(ErrorMessage = "Last name is required")]
         [StringLength(100)]
+        [RegularExpression(@"^[a-zA-Z\s]*$", ErrorMessage = "Last name can only contain letters")]
         public string LastName { get; set; } = string.Empty;
         
         [Required(ErrorMessage = "Specialization is required")]

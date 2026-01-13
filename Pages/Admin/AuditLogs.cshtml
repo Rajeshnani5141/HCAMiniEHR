@@ -1,0 +1,75 @@
+@page
+@model HCAMiniEHR.Pages.Admin.AuditLogsModel
+@{
+    ViewData["Title"] = "Audit Logs";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>🛡️ Security Audit Logs</h2>
+    <div>
+        <form method="post" asp-page-handler="TestProtection" class="d-inline">
+            <button class="btn btn-outline-danger btn-sm me-2" title="Attempts to run a DELETE command">⚠️ Test Tamper Protection</button>
+        </form>
+         <form method="post" asp-page-handler="Restore" class="d-inline">
+            <button class="btn btn-info btn-sm text-white" title="Recreate Missing Table" onclick="return confirm('Use this only if the AuditLog table was accidentally deleted. Proceed?');">🔧 Emergency Repair Database</button>
+        </form>
+        <span class="badge bg-success ms-2">Active Protection</span>
+    </div>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div class="card">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>Time</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Table</th>
+                    <th>Record ID</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var log in Model.AuditLogs)
+                {
+                    <tr>
+                        <td class="text-nowrap">@log.ChangedAt.ToString("MM/dd HH:mm:ss")</td>
+                        <td>@log.ChangedBy</td>
+                        <td>
+                            @if(log.Operation == "Added") { <span class="badge bg-success">INSERT</span> }
+                            else if(log.Operation == "Modified") { <span class="badge bg-warning text-dark">UPDATE</span> }
+                            else if(log.Operation == "Deleted") { <span class="badge bg-danger">DELETE</span> }
+                            else { <span class="badge bg-secondary">@log.Operation</span> }
+                        </td>
+                        <td>@log.TableName</td>
+                        <td>@log.RecordId</td>
+                        <td class="small text-muted">
+                            @if(!string.IsNullOrEmpty(log.NewValue))
+                            {
+                                <div><strong>New:</strong> @log.NewValue</div>
+                            }
+                            @if(!string.IsNullOrEmpty(log.OldValue))
+                            {
+                                <div><strong>Old:</strong> @log.OldValue</div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

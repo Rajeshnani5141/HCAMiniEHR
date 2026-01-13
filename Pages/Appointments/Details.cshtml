@@ -13,11 +13,11 @@
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Appointment.AppointmentDate)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Appointment.AppointmentDate)</dd>
         
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Appointment.Patient)</dt>
+        <dt class="col-sm-2">Patient Name</dt>
         <dd class="col-sm-10">
-            @if(Model.Appointment.Patient != null)
+            @if(!string.IsNullOrEmpty(Model.Appointment.PatientName))
             {
-                 @($"{Model.Appointment.Patient.FirstName} {Model.Appointment.Patient.LastName}")
+                 @Model.Appointment.PatientName
             }
             else
             {

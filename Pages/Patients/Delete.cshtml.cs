@@ -1,21 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using HCAMiniEHR.Models;
 using HCAMiniEHR.Services;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Pages.Patients
 {
     public class DeleteModel : PageModel
     {
         private readonly IPatientService _patientService;
+        private readonly IAppointmentService _appointmentService;
 
-        public DeleteModel(IPatientService patientService)
+        public DeleteModel(IPatientService patientService, IAppointmentService appointmentService)
         {
             _patientService = patientService;
+            _appointmentService = appointmentService;
         }
 
         [BindProperty]
-        public Patient Patient { get; set; } = default!;
+        public PatientDto Patient { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -42,7 +44,22 @@ namespace HCAMiniEHR.Pages.Patients
                 return NotFound();
             }
 
-            await _patientService.DeletePatientAsync(id.Value);
+            try
+            {
+                await _patientService.DeletePatientAsync(id.Value);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                Patient = await _patientService.GetPatientByIdAsync(id.Value) ?? new PatientDto();
+                return Page();
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again.");
+                Patient = await _patientService.GetPatientByIdAsync(id.Value) ?? new PatientDto();
+                return Page();
+            }
 
             return RedirectToPage("./Index");
         }

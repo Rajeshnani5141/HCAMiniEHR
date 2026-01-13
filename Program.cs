@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using HCAMiniEHR.Data;
 using HCAMiniEHR.Services;
+using HCAMiniEHR.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +16,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<ILabOrderService, LabOrderService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 
 
 var app = builder.Build();
+
+// Global Exception Handler
+app.UseMiddleware<GlobalErrorHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

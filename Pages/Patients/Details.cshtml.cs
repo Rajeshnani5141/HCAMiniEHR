@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using HCAMiniEHR.Models;
 using HCAMiniEHR.Services;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Pages.Patients
 {
@@ -14,7 +14,7 @@ namespace HCAMiniEHR.Pages.Patients
             _patientService = patientService;
         }
 
-        public Patient Patient { get; set; } = default!;
+        public PatientDto Patient { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

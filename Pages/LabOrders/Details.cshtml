@@ -1,0 +1,45 @@
+@page
+@model HCAMiniEHR.Pages.LabOrders.DetailsModel
+@{
+    ViewData["Title"] = "Lab Order Details";
+}
+
+<h1>Lab Order Details</h1>
+
+<div>
+    <h4>Lab Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.LabOrder.TestName)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.LabOrder.TestName)</dd>
+        
+        <dt class="col-sm-2">Patient</dt>
+        <dd class="col-sm-10">@Model.LabOrder.PatientName</dd>
+        
+        <dt class="col-sm-2">Appointment Date</dt>
+        <dd class="col-sm-10">
+            @if(Model.LabOrder.AppointmentDate.HasValue)
+            {
+                @Model.LabOrder.AppointmentDate.Value.ToShortDateString()
+            }
+        </dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.LabOrder.OrderDate)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.LabOrder.OrderDate)</dd>
+        
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.LabOrder.Status)</dt>
+        <dd class="col-sm-10">
+            <span class="badge @(Model.LabOrder.Status == "Completed" ? "bg-success" : Model.LabOrder.Status == "Cancelled" ? "bg-danger" : "bg-warning")">
+                @Html.DisplayFor(model => model.LabOrder.Status)
+            </span>
+        </dd>
+        
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.LabOrder.Results)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.LabOrder.Results)</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.LabOrder.Id" class="btn btn-warning">Edit</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>

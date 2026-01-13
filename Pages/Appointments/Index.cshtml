@@ -25,7 +25,7 @@
         @foreach (var appointment in Model.Appointments)
         {
             <tr>
-                <td>@appointment.Patient.FirstName @appointment.Patient.LastName</td>
+                <td>@appointment.PatientName</td>
                 <td>@appointment.AppointmentDate.ToString("MM/dd/yyyy hh:mm tt")</td>
                 <td>@appointment.DoctorName</td>
                 <td>@appointment.Reason</td>
@@ -33,6 +33,7 @@
                 <td>
                     <a asp-page="Edit" asp-route-id="@appointment.Id" class="btn btn-sm btn-warning">Edit</a>
                     <a asp-page="Details" asp-route-id="@appointment.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-page="Delete" asp-route-id="@appointment.Id" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         }

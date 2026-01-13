@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using HCAMiniEHR.Models;
 using HCAMiniEHR.Services;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Pages.LabOrders
 {
@@ -19,7 +18,7 @@ namespace HCAMiniEHR.Pages.LabOrders
         }
 
         [BindProperty]
-        public LabOrder LabOrder { get; set; } = default!;
+        public LabOrderDto LabOrder { get; set; } = default!;
 
         public SelectList AppointmentList { get; set; } = default!;
 
@@ -37,15 +36,10 @@ namespace HCAMiniEHR.Pages.LabOrders
             }
             LabOrder = labOrder;
 
-            // Ideally we should have a service method to get appointments with simple projection
-            // For now, we reuse GetAllAppointmentsAsync but we might want to optimize this later
             var appointments = await _appointmentService.GetAllAppointmentsAsync();
-            AppointmentList = new SelectList(appointments, "Id", "Id"); // Simplified, ideally show Patient Name + Date
-            
-            // Let's improve the display text for dropdown
             var appointmentItems = appointments.Select(a => new {
                 Id = a.Id,
-                DisplayText = $"#{a.Id} - {a.Patient?.FirstName} {a.Patient?.LastName} ({a.AppointmentDate:d})"
+                DisplayText = $"#{a.Id} - {a.PatientName} ({a.AppointmentDate:d})"
             });
             AppointmentList = new SelectList(appointmentItems, "Id", "DisplayText", LabOrder.AppointmentId);
 
@@ -59,9 +53,9 @@ namespace HCAMiniEHR.Pages.LabOrders
                 var appointments = await _appointmentService.GetAllAppointmentsAsync();
                  var appointmentItems = appointments.Select(a => new {
                     Id = a.Id,
-                    DisplayText = $"#{a.Id} - {a.Patient?.FirstName} {a.Patient?.LastName} ({a.AppointmentDate:d})"
+                    DisplayText = $"#{a.Id} - {a.PatientName} ({a.AppointmentDate:d})"
                 });
-                AppointmentList = new SelectList(appointmentItems, "Id", "DisplayText");
+                AppointmentList = new SelectList(appointmentItems, "Id", "DisplayText", LabOrder.AppointmentId);
                 return Page();
             }
 
@@ -69,7 +63,7 @@ namespace HCAMiniEHR.Pages.LabOrders
             {
                 await _labOrderService.UpdateLabOrderAsync(LabOrder);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                 if (!await LabOrderExists(LabOrder.Id))
                 {

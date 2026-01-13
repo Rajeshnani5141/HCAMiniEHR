@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using HCAMiniEHR.Models;
 using HCAMiniEHR.Services;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Pages.Appointments
 {
@@ -19,7 +18,7 @@ namespace HCAMiniEHR.Pages.Appointments
         }
 
         [BindProperty]
-        public Appointment Appointment { get; set; } = default!;
+        public AppointmentDto Appointment { get; set; } = default!;
 
         public SelectList PatientList { get; set; } = default!;
         public SelectList DoctorList { get; set; } = default!;
@@ -39,10 +38,10 @@ namespace HCAMiniEHR.Pages.Appointments
             Appointment = appointment;
 
             var patients = await _patientService.GetAllPatientsAsync();
-            PatientList = new SelectList(patients, "Id", "FirstName");
+            PatientList = new SelectList(patients, "Id", "FullName");
 
             var doctors = await _appointmentService.GetDoctorsAsync();
-            DoctorList = new SelectList(doctors, "Id", "LastName", Appointment.DoctorId, "Specialization");
+            DoctorList = new SelectList(doctors, "Id", "FullName", Appointment.DoctorId);
 
             return Page();
         }
@@ -52,10 +51,10 @@ namespace HCAMiniEHR.Pages.Appointments
             if (!ModelState.IsValid)
             {
                 var patients = await _patientService.GetAllPatientsAsync();
-                PatientList = new SelectList(patients, "Id", "FirstName");
+                PatientList = new SelectList(patients, "Id", "FullName");
                 
                 var doctors = await _appointmentService.GetDoctorsAsync();
-                DoctorList = new SelectList(doctors, "Id", "LastName", Appointment.DoctorId, "Specialization");
+                DoctorList = new SelectList(doctors, "Id", "FullName", Appointment.DoctorId);
                 
                 return Page();
             }
@@ -67,7 +66,7 @@ namespace HCAMiniEHR.Pages.Appointments
                 var selectedDoctor = doctors.FirstOrDefault(d => d.Id == Appointment.DoctorId);
                 if (selectedDoctor != null)
                 {
-                    Appointment.DoctorName = $"Dr. {selectedDoctor.LastName}";
+                    Appointment.DoctorName = selectedDoctor.FullName;
                 }
             }
 
@@ -75,7 +74,7 @@ namespace HCAMiniEHR.Pages.Appointments
             {
                 await _appointmentService.UpdateAppointmentAsync(Appointment);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                  if (!await AppointmentExists(Appointment.Id))
                 {

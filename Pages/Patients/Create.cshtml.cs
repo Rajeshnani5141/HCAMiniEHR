@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using HCAMiniEHR.Models;
 using HCAMiniEHR.Services;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Pages.Patients
 {
@@ -15,10 +15,11 @@ namespace HCAMiniEHR.Pages.Patients
         }
 
         [BindProperty]
-        public Patient Patient { get; set; } = new Patient();
+        public PatientDto Patient { get; set; } = new PatientDto();
 
         public IActionResult OnGet()
         {
+            Patient.DateOfBirth = DateTime.Today;
             return Page();
         }
 

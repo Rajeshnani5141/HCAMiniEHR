@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using HCAMiniEHR.Models;
 using HCAMiniEHR.Services;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Pages.Appointments
 {
@@ -18,18 +18,20 @@ namespace HCAMiniEHR.Pages.Appointments
         }
 
         [BindProperty]
-        public Appointment Appointment { get; set; } = new Appointment();
+        public AppointmentDto Appointment { get; set; } = new AppointmentDto();
         
-        public SelectList PatientList { get; set; } = new SelectList(new List<Patient>(), "Id", "FirstName");
-        public SelectList DoctorList { get; set; } = new SelectList(new List<Doctor>(), "Id", "LastName");
+        public SelectList PatientList { get; set; } = new SelectList(new List<PatientDto>(), "Id", "FirstName");
+        public SelectList DoctorList { get; set; } = new SelectList(new List<DoctorDto>(), "Id", "LastName");
 
         public async Task<IActionResult> OnGetAsync()
         {
+            Appointment.AppointmentDate = DateTime.Now;
+
             var patients = await _patientService.GetAllPatientsAsync();
-            PatientList = new SelectList(patients, "Id", "FirstName");
+            PatientList = new SelectList(patients, "Id", "FullName");
             
             var doctors = await _appointmentService.GetDoctorsAsync();
-            DoctorList = new SelectList(doctors, "Id", "LastName", null, "Specialization");
+            DoctorList = new SelectList(doctors, "Id", "FullName");
             
             return Page();
         }
@@ -39,10 +41,10 @@ namespace HCAMiniEHR.Pages.Appointments
             if (!ModelState.IsValid)
             {
                 var patients = await _patientService.GetAllPatientsAsync();
-                PatientList = new SelectList(patients, "Id", "FirstName");
+                PatientList = new SelectList(patients, "Id", "FullName");
                 
                 var doctors = await _appointmentService.GetDoctorsAsync();
-                DoctorList = new SelectList(doctors, "Id", "LastName", null, "Specialization");
+                DoctorList = new SelectList(doctors, "Id", "FullName");
                 
                 return Page();
             }
@@ -54,12 +56,28 @@ namespace HCAMiniEHR.Pages.Appointments
                 var selectedDoctor = doctors.FirstOrDefault(d => d.Id == Appointment.DoctorId);
                 if (selectedDoctor != null)
                 {
-                    Appointment.DoctorName = $"Dr. {selectedDoctor.LastName}";
+                    Appointment.DoctorName = selectedDoctor.FullName;
                 }
             }
 
-            await _appointmentService.CreateAppointmentAsync(Appointment);
-            return RedirectToPage("./Index");
+            try
+            {
+                await _appointmentService.CreateAppointmentAsync(Appointment);
+                return RedirectToPage("./Index");
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Conflict detected: Show error and reload lists
+                ModelState.AddModelError("Appointment.AppointmentDate", ex.Message);
+                
+                var patients = await _patientService.GetAllPatientsAsync();
+                PatientList = new SelectList(patients, "Id", "FullName");
+                
+                var doctors = await _appointmentService.GetDoctorsAsync();
+                DoctorList = new SelectList(doctors, "Id", "FullName");
+
+                return Page();
+            }
         }
     }
 }

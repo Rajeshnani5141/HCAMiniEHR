@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using HCAMiniEHR.Models;
 using HCAMiniEHR.Services;
-using Microsoft.EntityFrameworkCore;
+using HCAMiniEHR.Services.Dtos;
 
 namespace HCAMiniEHR.Pages.Patients
 {
@@ -16,7 +15,7 @@ namespace HCAMiniEHR.Pages.Patients
         }
 
         [BindProperty]
-        public Patient Patient { get; set; } = default!;
+        public PatientDto Patient { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -45,7 +44,7 @@ namespace HCAMiniEHR.Pages.Patients
             {
                 await _patientService.UpdatePatientAsync(Patient);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                 if (!await PatientExists(Patient.Id))
                 {
