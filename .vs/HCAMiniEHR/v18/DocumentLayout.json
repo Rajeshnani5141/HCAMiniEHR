@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7120B532-A421-424B-BFF8-B3352ABE1B68}|HCAMiniEHR.csproj|c:\\users\\admin\\.gemini\\antigravity\\scratch\\hcaminiehr\\pages\\appointments\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7120B532-A421-424B-BFF8-B3352ABE1B68}|HCAMiniEHR.csproj|solutionrelative:pages\\appointments\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7120B532-A421-424B-BFF8-B3352ABE1B68}|HCAMiniEHR.csproj|c:\\users\\admin\\.gemini\\antigravity\\scratch\\hcaminiehr\\sql\\scripts.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{7120B532-A421-424B-BFF8-B3352ABE1B68}|HCAMiniEHR.csproj|solutionrelative:sql\\scripts.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
@@ -57,11 +61,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\Pages\\Appointments\\Create.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Appointments\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\Pages\\Appointments\\Create.cshtml",
+              "RelativeToolTip": "Pages\\Appointments\\Create.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAIwBAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-13T12:18:20.048Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -74,7 +103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Scripts.sql ",
               "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\SQL\\Scripts.sql",
               "RelativeDocumentMoniker": "SQL\\Scripts.sql",
@@ -86,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\Pages\\Reports\\Index.cshtml",
               "RelativeDocumentMoniker": "Pages\\Reports\\Index.cshtml",
@@ -99,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
@@ -111,16 +140,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "AuditLogs.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\Pages\\Admin\\AuditLogs.cshtml.cs",
               "RelativeDocumentMoniker": "Pages\\Admin\\AuditLogs.cshtml.cs",
@@ -132,12 +153,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Pages\\Shared\\_Layout.cshtml",
@@ -150,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Appointment.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\Models\\Appointment.cs",
               "RelativeDocumentMoniker": "Models\\Appointment.cs",
@@ -162,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Edit.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\Pages\\Appointments\\Edit.cshtml.cs",
               "RelativeDocumentMoniker": "Pages\\Appointments\\Edit.cshtml.cs",
@@ -174,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Create.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\Pages\\Appointments\\Create.cshtml.cs",
               "RelativeDocumentMoniker": "Pages\\Appointments\\Create.cshtml.cs",
@@ -186,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\HCAMiniEHR\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -199,7 +216,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
